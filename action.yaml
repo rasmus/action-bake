@@ -16,8 +16,8 @@ runs:
       cd /tmp/bake-download
       curl -o bake.zip -sS -L https://github.com/rasmus/Bake/releases/download/v${{ inputs.version }}/bake_linux_x86_64.zip
       unzip bake.zip
-      ls -l
       chmod +x bake
       sudo mv bake /bin/
       cd
       rm -rf /tmp/bake-download
+      bake --version
