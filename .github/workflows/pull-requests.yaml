@@ -1,0 +1,17 @@
+name: pull-requests
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Run bake
+      uses: ./.
+      with:
+        version: '0.26.39-beta'

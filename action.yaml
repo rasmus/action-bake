@@ -1,0 +1,22 @@
+name: 'Run "bake"'
+description: 'Executes the convention based build command "bake"'
+
+inputs:
+  version:
+    description: 'Version of bake to use. ALWAYS use a specific version!'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+  - name: Install bake
+    shell: bash
+    run: |
+      mkdir -p /tmp/bake-download
+      cd /tmp/bake-download
+      curl -o bake.zip -sS -L https://github.com/rasmus/Bake/releases/download/v{{ inputs.version }}/bake_linux_x86_64.zip
+      unzip -v bake.zip
+      chmod +x bake
+      sudo mv bake /bin/
+      cd
+      rm -rf /tmp/bake-download
