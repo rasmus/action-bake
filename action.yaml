@@ -7,8 +7,7 @@ inputs:
     required: true
   args:
     description: 'Arguments passed diredctly yo bake'
-    required: false
-    default: ''
+    required: true
 
 runs:
   using: "composite"
