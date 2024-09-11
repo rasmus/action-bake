@@ -5,6 +5,10 @@ inputs:
   version:
     description: 'Version of bake to use. ALWAYS use a specific version!'
     required: true
+  args:
+    description: 'Arguments passed diredctly yo bake'
+    required: false
+    default: ''
 
 runs:
   using: "composite"
@@ -20,4 +24,8 @@ runs:
       sudo mv bake /bin/
       cd
       rm -rf /tmp/bake-download
-      bake --version
+
+  - name: Run bake
+    shell: bash
+    run: |
+      bake ${{ inputs.args }}
