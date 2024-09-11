@@ -15,7 +15,7 @@ runs:
       mkdir -p /tmp/bake-download
       cd /tmp/bake-download
       curl -o bake.zip -sS -L https://github.com/rasmus/Bake/releases/download/v${{ inputs.version }}/bake_linux_x86_64.zip
-      unzip -v bake.zip
+      unzip bake.zip
       ls -l
       chmod +x bake
       sudo mv bake /bin/
