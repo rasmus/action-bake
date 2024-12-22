@@ -2,9 +2,9 @@ name: pull-requests
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ v1 ]
   pull_request:
-    branches: [ develop ]
+    branches: [ v1 ]
 
 jobs:
   build:
@@ -14,5 +14,5 @@ jobs:
     - uses: actions/checkout@v4
     - uses: ./.
       with:
-        version: '0.26.39-beta'
+        version: '0.30.43-beta'
         args: '--version'
