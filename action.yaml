@@ -10,7 +10,7 @@ inputs:
     description: 'Arguments passed diredctly yo bake'
     required: true
   # OPTIONAL ==============================================================
-  version:
+  dotnet-version:
     dotnet-version: '.NET version to install. Should match the version used by bake'
     required: false
     default: '8.0.x'
