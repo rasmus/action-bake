@@ -2,29 +2,31 @@ name: 'Run "bake"'
 description: 'Executes the convention based build command "bake"'
 
 inputs:
+  # REQUIRED ==============================================================
   version:
     description: 'Version of bake to use. ALWAYS use a specific version!'
     required: true
   args:
     description: 'Arguments passed diredctly yo bake'
     required: true
+  # OPTIONAL ==============================================================
+  version:
+    dotnet-version: '.NET version to install. Should match the version used by bake'
+    required: false
+    default: '8.0.x'
 
 runs:
   using: "composite"
   steps:
-  - name: Install bake
-    shell: bash
-    run: |
-      mkdir -p /tmp/bake-download
-      cd /tmp/bake-download
-      curl -o bake.zip -sS -L https://github.com/rasmus/Bake/releases/download/v${{ inputs.version }}/bake_linux_x86_64.zip
-      unzip bake.zip
-      chmod +x bake
-      sudo mv bake /bin/
-      cd
-      rm -rf /tmp/bake-download
+  - name: Install .NET dependency
+    uses: actions/setup-dotnet@v4
+    with:
+      dotnet-version: '${{ inputs.dotnet-version }}'
 
   - name: Run bake
     shell: bash
     run: |
+      dotnet tool install --global Bake --version ${{ inputs.bake-version }}
+      export PATH="$PATH:/home/ubuntu/.dotnet/tools"
+      
       bake ${{ inputs.args }}
